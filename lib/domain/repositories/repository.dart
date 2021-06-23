@@ -1,4 +1,5 @@
 import 'package:machinetest/data/datasource/provider.dart';
+import 'package:machinetest/data/model/add.dart';
 import 'package:machinetest/data/model/products.dart';
 
 class Repository {
@@ -6,4 +7,6 @@ class Repository {
 
   Future<Products> getProducts({Map<dynamic, dynamic> params}) =>
       productScreenProviders.getProducts();
+  Future<Add>postProducts({Map<dynamic, dynamic> params}) =>
+      productScreenProviders.postProducts(params: params);
 }

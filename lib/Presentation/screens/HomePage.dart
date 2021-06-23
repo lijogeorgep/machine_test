@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:machinetest/Presentation/bloc/product_bloc.dart';
+import 'package:machinetest/Presentation/screens/addproduct.dart';
 import 'package:machinetest/Presentation/screens/productDetails.dart';
 import 'package:machinetest/data/model/products.dart';
 
@@ -28,19 +29,41 @@ class _HomePageState extends State<HomePage> {
         centerTitle: true,
       ),
       body: SingleChildScrollView(
-        child: BlocBuilder(
-            bloc: productbloc,
-            builder: (context, snapshot) {
-              print('state$snapshot');
+        child: Column(
+          children: [
+            BlocBuilder(
+                bloc: productbloc,
+                builder: (context, snapshot) {
+                  print('state$snapshot');
 
-              if (snapshot is ProductLoadedState) {
-                return buildProductList(snapshot.productScreen.data, context);
-              } else if (snapshot is ProductErrorState) {
-                return buildErrorUi(snapshot.message);
-              }
-              return showCircleProgress();
-            }),
+                  if (snapshot is ProductLoadedState) {
+                    return buildProductList(snapshot.productScreen.data, context);
+                  } else if (snapshot is ProductErrorState) {
+                    return buildErrorUi(snapshot.message);
+                  }
+                  return showCircleProgress();
+                }),
+            ElevatedButton(
+              style: ButtonStyle(
+                shape: MaterialStateProperty.all(
+                    RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(20.0),
+                    )),
+                backgroundColor: MaterialStateProperty.all<Color>(
+                    Colors.blue.shade900),
+                shadowColor:
+                MaterialStateProperty.all(Colors.grey),
+                elevation: MaterialStateProperty.all<double>(5),
+              ),
+              onPressed: () {
+                Navigator.push(context,MaterialPageRoute(builder: (context)=>AddProduct()));
+              },
+              child: Text('ADD'),
+            ),
+          ],
+        ),
       ),
+
     );
   }
 
