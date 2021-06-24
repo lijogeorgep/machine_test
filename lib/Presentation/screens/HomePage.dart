@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:machinetest/Presentation/bloc/product_bloc.dart';
+import 'package:machinetest/Presentation/screens/addCategory.dart';
 import 'package:machinetest/Presentation/screens/addproduct.dart';
 import 'package:machinetest/Presentation/screens/productDetails.dart';
 import 'package:machinetest/data/model/products.dart';
@@ -59,6 +60,23 @@ class _HomePageState extends State<HomePage> {
                 Navigator.push(context,MaterialPageRoute(builder: (context)=>AddProduct()));
               },
               child: Text('ADD'),
+            ),
+            ElevatedButton(
+              style: ButtonStyle(
+                shape: MaterialStateProperty.all(
+                    RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(20.0),
+                    )),
+                backgroundColor: MaterialStateProperty.all<Color>(
+                    Colors.blue.shade900),
+                shadowColor:
+                MaterialStateProperty.all(Colors.grey),
+                elevation: MaterialStateProperty.all<double>(5),
+              ),
+              onPressed: () {
+                Navigator.push(context,MaterialPageRoute(builder: (context)=>AddCategory()));
+              },
+              child: Text('Category'),
             ),
           ],
         ),
